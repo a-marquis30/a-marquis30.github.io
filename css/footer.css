@@ -14,8 +14,8 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px 0;
   flex-wrap: wrap;
+  padding: 0;
 }
 
 .social-icon-item,
