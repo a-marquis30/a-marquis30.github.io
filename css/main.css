@@ -1,0 +1,43 @@
+@import 'https://fonts.googleapis.com/css?family=Inter:300, 400, 500, 700';
+@import "/css/footer.css";
+:root {
+  --dark-pearl: #0D1117;
+  --medium-pearl: #161B22;
+  --bunker: #21262D;
+  --slate: #89929B;
+  --light-slate: #C6CDD5;
+  --white: #ECF2F8;
+
+}
+
+.text-white{
+  color: var(--white);
+}
+
+.bg-light{
+  background-color: var(--medium-pearl);
+}
+
+.bg-dark{
+  background-color: var(--dark-pearl);
+}
+
+body {
+  background: var(--medium-pearl);
+  color: var(--white);
+  position: relative;
+  font-family: 'Inter';
+}
+
+main {
+  background: var(--medium-pearl);
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  font-family: 'Inter';
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+
+
