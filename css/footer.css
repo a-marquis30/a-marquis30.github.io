@@ -31,7 +31,7 @@ footer {
   transition: 0.5s;
 }
 .social-icon-link:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
 }
 
 .footer-link {
