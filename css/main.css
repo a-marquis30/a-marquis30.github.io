@@ -28,21 +28,17 @@ body {
   color: var(--white);
   position: relative;
   font-family: 'Inter';
+  margin-bottom: 150px;
 }
 
 main {
   background: var(--medium-pearl);
   position: relative;
-  text-align: center;
-  overflow: hidden;
   font-family: 'Inter';
   padding-top: 5rem;
   padding-bottom: 5rem;
 }
 
-body {
-  overflow: hidden; /* Add this line */
-}
 
 body::after {
   content: '';
@@ -52,10 +48,49 @@ body::after {
   width: 0;
   height: 0;
   border-radius: 50%;
-  box-shadow: 0 0 60px 25px rgba(var(--slate), 0.5); /* Increase the blur radius and spread radius */
+  box-shadow: 0 0 300px 70px rgba(var(--slate), 0.5);
   pointer-events: none;
   transition: transform .2s, opacity .2s;
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
   z-index: 10000;
+}
+
+
+* {
+  box-sizing: border-box
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+.side-bar {
+  display: flex;
+  flex-direction: column;
+}
+
+
+nav li {
+  list-style: none;
+}
+
+nav li a {
+  text-decoration: none;
+  color: var(--white);
+  display: block;
+  transition: all ease-out 250ms;
+  opacity: 0.75;
+
+}
+
+nav li a:hover {
+  opacity: 1;
+}
+
+
+.active {
+  color: var(--slate); 
+  font-weight: 600;
 }
