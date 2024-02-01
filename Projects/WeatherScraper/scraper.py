@@ -21,5 +21,5 @@ def weather_scraper ():
     return(f'The temperature in {query} is {temperature}{unit} and the weather is {weather}.')
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5501)
+    app.run(debug=True)
 
