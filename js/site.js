@@ -27,9 +27,22 @@ function navHighlighter() {
 }
 
 function GetWeather(location) {
-  fetch(`https://austinmarquis30.pythonanywhere.com/weather_scraper?location=${encodeURIComponent(location)}`)
-      .then(response => response.text())
-      .then(data => {
-          $('#weatherResults').append(data);
-      });
+  if (location == "" || location == null || location == undefined){
+    alert("Please enter a location");
+    return;
+  }
+  else{
+    fetch(`https://austinmarquis30.pythonanywhere.com/weather_scraper?location=${encodeURIComponent(location)}`)
+    .then(response => {
+      if (!response.ok) {
+        alert("Please enter a valid location");
+        return
+      }
+      return response.text();
+    })
+    .then(data => {
+      $('#weatherResults').html(data);
+    })
+  }
+
 }
