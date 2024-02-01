@@ -2,8 +2,10 @@
 # by John Watson Rooney
 from flask import Flask, request
 from requests_html import HTMLSession
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 @app.route('/weather_scraper', methods=['GET','POST'])
 def weather_scraper ():
     location = request.args.get('location')
