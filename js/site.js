@@ -27,7 +27,7 @@ function navHighlighter() {
 }
 
 function GetWeather(location) {
-  fetch(`http://austinmarquis30.pythonanywhere.com/weather_scraper?location=${encodeURIComponent(location)}`)
+  fetch('https://austinmarquis30.pythonanywhere.com/weather_scraper?location=${encodeURIComponent(location)}')
       .then(response => response.text())
       .then(data => {
         $('#weatherResults').append(data);
