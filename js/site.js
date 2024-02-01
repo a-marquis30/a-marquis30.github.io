@@ -25,3 +25,11 @@ function navHighlighter() {
     }
   });
 }
+
+function GetWeather(location) {
+  fetch(`/weather_scraper?location=${encodeURIComponent(location)}`)
+      .then(response => response.text())
+      .then(data => {
+        $('#weatherResults').append(data);
+      });
+}

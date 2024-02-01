@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Scraper</title>
+    <script src="/js/site.js"></script>
+
+    <!-- jQuery v3.7.1 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <h1>Weather Scraper</h1>
+    <input type="text" id="location" name="location" placeholder="Enter a location">
+    <input type="submit" value="Scrape Weather" onclick="GetWeather(document.getElementById('location').value)">
+    <div id="weatherResults"></div>
+
+</body>
+</html>
