@@ -3,7 +3,7 @@ from flask import Flask, request
 sys.path.append('/home/austinmarquis30/mysite') 
 import env
 import os
-import mysql.connector
+import MySQLdb
 from flask_cors import CORS
 
 appSignUp = Flask(__name__)
@@ -23,15 +23,16 @@ def handle_post():
     db_name = os.environ.get('DB_NAME')
 
     # create a connection to the database
-    cnx = mysql.connector.connect(
+    cnx = MySQLdb.connect(
         host = db_host,
         port = db_port,
         user = db_user,
         password = db_password,
         database = db_name,
-        ssl_ca = "/home/austinmarquis30/mysite/isrgrootx1.pem",
-        ssl_verify_cert = True,
-        ssl_verify_identity = True
+        ssl_mode = "VERIFY_IDENTITY",
+        ssl = {
+            "ca": "/home/austinmarquis30/mysite/isrgrootx1.pem"
+        }
     )
 
 
