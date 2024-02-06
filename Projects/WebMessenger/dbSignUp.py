@@ -23,7 +23,8 @@ def handle_post():
     db_name = os.environ.get('DB_NAME')
 
     # create a connection to the database
-    cnx = mysql.connector.connect(user=db_user, password=db_password, host=db_host, port=db_port, database=db_name)
+    cnx = mysql.connector.connect(user=db_user, password=db_password, host=db_host, port=db_port, database=db_name, ssl_ca='/home/austinmarquis30/mysite/isrgrootx1.pem')
+
 
 
     # create a cursor object
