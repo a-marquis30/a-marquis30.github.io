@@ -5,9 +5,9 @@ import env
 import os
 import mysql.connector
 
-dbLogin = Flask(__name__)
+appSignUp = Flask(__name__)
 
-@dbLogin.route('/dbLogin', methods=['POST'])
+@appSignUp.route('/SignUp', methods=['POST'])
 def handle_post():
     username = request.form.get('username')
     email = request.form.get('email')
@@ -46,4 +46,4 @@ def handle_post():
     return '', 204
 
 if __name__ == "__main__":
-    dbLogin.run(debug=True)
+    appSignUp.run(debug=True)

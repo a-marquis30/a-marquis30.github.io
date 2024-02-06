@@ -4,9 +4,9 @@ from flask import Flask, request
 from requests_html import HTMLSession
 from flask_cors import CORS
 
-app = Flask(__name__)
-CORS(app)
-@app.route('/weather_scraper', methods=['GET','POST'])
+appScraper = Flask(__name__)
+CORS(appScraper)
+@appScraper.route('/weather_scraper', methods=['GET','POST'])
 def weather_scraper ():
     location = request.args.get('location')
     s = HTMLSession()
@@ -23,5 +23,5 @@ def weather_scraper ():
     return(f'The temperature in {query} is {temperature}{unit} and the weather is {weather}.')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    appScraper.run(debug=True)
 
