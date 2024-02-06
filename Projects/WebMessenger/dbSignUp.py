@@ -23,7 +23,6 @@ def handle_post():
     db_name = os.environ.get('DB_NAME')
 
     # create a connection to the database
-    cnx = mysql.connector.connect(user=db_user, password=db_password, host=db_host, database=db_name)
     cnx = mysql.connector.connect(user=db_user, password=db_password, host=db_host, port=db_port, database=db_name)
 
 
