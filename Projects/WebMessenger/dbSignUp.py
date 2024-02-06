@@ -4,8 +4,10 @@ sys.path.append('/home/austinmarquis30/mysite')
 import env
 import os
 import mysql.connector
+from flask_cors import CORS
 
 appSignUp = Flask(__name__)
+CORS(appSignUp)
 
 @appSignUp.route('/SignUp', methods=['POST'])
 def handle_post():
