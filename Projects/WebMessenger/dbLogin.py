@@ -1,6 +1,6 @@
 import sys
 from flask import Flask, request
-sys.path.append('/home/austinmarquis30/mysite')  # Add the directory containing env.py to sys.path
+sys.path.append('/home/austinmarquis30/mysite') 
 import env
 import os
 import mysql.connector

@@ -46,3 +46,17 @@ function GetWeather(location) {
   }
 
 }
+
+function validatePassword() {
+  var password = document.getElementById('password').value;
+  var confirmPassword = document.getElementById('confirmPassword').value;
+  var confirmPasswordMessage = document.getElementById('confirmPasswordMessage');
+
+  if (password === confirmPassword) {
+      confirmPasswordMessage.style.color = 'green';
+      confirmPasswordMessage.textContent = 'Passwords match.';
+  } else {
+    confirmPasswordMessage.style.color = 'red';
+    confirmPasswordMessage.textContent = 'Passwords do not match.';
+  }
+}
