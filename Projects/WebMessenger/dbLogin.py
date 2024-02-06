@@ -1,10 +1,13 @@
+import sys
 from flask import Flask, request
+sys.path.append('/home/austinmarquis30/mysite')  # Add the directory containing env.py to sys.path
 import env
+import os
 import mysql.connector
 
-app = Flask(__name__)
+dbLogin = Flask(__name__)
 
-@app.route('/dbLogin', methods=['POST'])
+@dbLogin.route('/dbLogin', methods=['POST'])
 def handle_post():
     username = request.form.get('username')
     email = request.form.get('email')
@@ -42,7 +45,5 @@ def handle_post():
 
     return '', 204
 
-
-
 if __name__ == "__main__":
-    app.run(debug=True, port=5501)
+    dbLogin.run(debug=True)
