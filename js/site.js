@@ -32,7 +32,7 @@ function GetWeather(location) {
     return;
   }
   else{
-    fetch(`https://austinmarquis30.pythonanywhere.com/weather_scraper?location=${encodeURIComponent(location)}`)
+    fetch(`https://austinmarquis30.pythonanywhere.com/app1/weather_scraper?location=${encodeURIComponent(location)}`)
     .then(response => {
       if (!response.ok) {
         alert("Please enter a valid location");
