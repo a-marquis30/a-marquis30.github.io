@@ -1,5 +1,5 @@
 import sys
-from flask import Flask, request
+from flask import Flask, request, jsonify
 sys.path.append('/home/austinmarquis30/mysite') 
 import env
 import os
@@ -33,25 +33,42 @@ def handle_post():
     # create a cursor object
     cursor = cnx.cursor()
 
-    # create an INSERT INTO SQL query
-    add_user = ("INSERT INTO users "
-                "(username, email, password) "
-                "VALUES (%s, %s, %s)")
+    try:
+        # Check if username already exists
+        cursor.execute("SELECT * FROM users WHERE username = %s", (username,))
+        existing_username = cursor.fetchone()
+        if existing_username:
+            return jsonify({'error': 'Username already exists!'}), 400
 
-    # data to insert
-    data_user = (username, email, password)
+        # Check if email exists
+        cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
+        existing_email = cursor.fetchone()
+        if existing_email:
+            return jsonify({'error': 'Email already exists!'}), 400
 
-    # execute the query
-    cursor.execute(add_user, data_user)
+        # create an INSERT INTO SQL query
+        add_user = ("INSERT INTO users "
+                    "(username, email, password) "
+                    "VALUES (%s, %s, %s)")
 
-    # commit the changes
-    cnx.commit()
+        # data to insert
+        data_user = (username, email, password)
 
-    # close the cursor and connection
-    cursor.close()
-    cnx.close()
+        # execute the query
+        cursor.execute(add_user, data_user)
 
-    return '', 204
+        # commit the changes
+        cnx.commit()
+
+        return jsonify({'message': 'User successfully added'}), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+    finally:
+        # close the cursor and connection
+        cursor.close()
+        cnx.close()
 
 if __name__ == "__main__":
     appSignUp.run(debug=True)
