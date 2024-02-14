@@ -84,7 +84,7 @@
                                 alert('User successfully added!');
                                 console.log(response);
                             },
-                            error: function(error) {
+                            error: function(xhr, status, error) {
                                 // Handle any errors here
                                 var errorMessage = xhr.responseJSON && xhr.responseJSON.error ? xhr.responseJSON.error : 'An error occurred';
                                 alert(errorMessage);
