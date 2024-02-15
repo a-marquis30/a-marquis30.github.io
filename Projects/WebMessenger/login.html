@@ -70,17 +70,19 @@
                     $('#userForm').submit(function(e) {
                         e.preventDefault();
                         $.ajax({
-                            url: 'https://austinmarquis30.pythonanywhere.com/dbLogin',
+                            url: 'https://austinmarquis30.pythonanywhere.com/app3/Login',
                             type: 'POST',
                             data: $('#userForm').serialize(),
                             success: function(response) {
-                                // The server's response is available here
+                                alert('Logged in!');
                                 console.log(response);
                             },
-                            error: function(error) {
+                            error: function(xhr, status, error) {
                                 // Handle any errors here
+                                var errorMessage = xhr.responseJSON && xhr.responseJSON.error ? xhr.responseJSON.error : 'An error occurred';
+                                alert(errorMessage);
                                 console.log(error);
-                            }
+                            } 
                         });
                         
                         // Reset form
