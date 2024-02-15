@@ -83,13 +83,14 @@
                             success: function(response) {
                                 alert('User successfully added!');
                                 console.log(response);
+                                window.location.href = "login.html";
                             },
                             error: function(xhr, status, error) {
                                 // Handle any errors here
                                 var errorMessage = xhr.responseJSON && xhr.responseJSON.error ? xhr.responseJSON.error : 'An error occurred';
                                 alert(errorMessage);
                                 console.log(error);
-                            }
+                            } 
                         });
                         
                         // Reset form
