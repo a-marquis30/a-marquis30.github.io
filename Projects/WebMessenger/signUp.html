@@ -74,6 +74,9 @@
             
             <script>
                 $(document).ready(function() {
+                    sessionStorage.removeItem('loggedIn');
+                    sessionStorage.removeItem('user');
+                    
                     $('#userForm').submit(function(e) {
                         e.preventDefault();
                         $.ajax({
