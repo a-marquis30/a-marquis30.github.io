@@ -38,13 +38,13 @@ def handle_post():
         cursor.execute("SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
         user = cursor.fetchone()
         if user:
-            return jsonify({'message': 'Login successful'}), 200
-
+            return jsonify({'message': 'Login successful', 'username': user['username']}), 200
+        
         # Check if email and password match
         cursor.execute("SELECT * FROM users WHERE email = %s AND password = %s", (email, password))
         user = cursor.fetchone()
         if user:
-            return jsonify({'message': 'Login successful'}), 200
+            return jsonify({'message': 'Login successful', 'username': user['username']}), 200
 
         return jsonify({'error': 'Invalid username/email or password'}), 400
 

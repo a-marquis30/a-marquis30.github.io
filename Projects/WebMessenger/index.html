@@ -23,8 +23,9 @@
 
         <body>
 
-            <header class="text-center">
-                <h1>Home</h1>
+            <header>
+                <h1 class="d-inline">Home</h1>
+                <button id="logoutButton" class="float-end d-inline">Logout</button>
             </header>
 
             <main>
@@ -55,6 +56,18 @@
                     crossorigin="anonymous"
             ></script>
             
+            <script>
+                window.onload = function() {
+                    var loggedIn = sessionStorage.getItem('loggedIn');
+                    if (loggedIn !== 'true') {
+                        window.location.href = "login.html";
+                    }
+                }
+                $('#logoutButton').click(function() {
+                    sessionStorage.removeItem('loggedIn');
+                    window.location.href = "login.html"; // Redirect to login page after logout
+                });
+            </script>
         </body>
 </html>
         
