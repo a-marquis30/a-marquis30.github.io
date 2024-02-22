@@ -56,6 +56,11 @@
             </main>
 
             <footer class="footer">
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                    <div id="loginToast" class="toast text-bg-primary" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-body">Logged in!</div>
+                    </div>
+                </div>
             </footer>
 
             <script src="/js/site.js"></script>
@@ -76,8 +81,14 @@
             <script>
                 window.onload = function() {
                     var loggedIn = sessionStorage.getItem('loggedIn');
+                    var redirectedFromLogin = sessionStorage.getItem('redirectedFromLogin');
                     if (loggedIn !== 'true') {
                         window.location.href = "login.html";
+                    }
+                    if (redirectedFromLogin === 'true') {
+                        const toast = new bootstrap.Toast($('#loginToast'))
+                        toast.show()
+                        sessionStorage.setItem('redirectedFromLogin', 'false');
                     }
                     var user = sessionStorage.getItem('user');
                     $('#navbarDropdownMenuLink').text(user);
@@ -85,6 +96,7 @@
                 
                 function signOut() {
                     sessionStorage.removeItem('loggedIn');
+                    sessionStorage.setItem('redirectedFromIndex', 'true');
                     window.location.href = "login.html"; // Redirect to login page after logout
                 };
             </script>

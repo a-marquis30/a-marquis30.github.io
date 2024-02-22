@@ -48,6 +48,16 @@
             </main>
 
             <footer class="footer">
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                    <div id="loggedOutToast" class="toast text-bg-primary" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-body">Logged out!</div>
+                    </div>
+                </div>
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                    <div id="signedUpToast" class="toast text-bg-primary" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-body">User created!</div>
+                    </div>
+                </div>
             </footer>
 
             <script src="/js/site.js"></script>
@@ -77,10 +87,10 @@
                             type: 'POST',
                             data: $('#userForm').serialize(),
                             success: function(response) {
-                                alert('Logged in!');
                                 console.log(response);
                                 sessionStorage.setItem('loggedIn', 'true');
                                 sessionStorage.setItem('user', response['username']);
+                                sessionStorage.setItem('redirectedFromLogin', 'true');
                                 window.location.href = "index.html";
                             },
                             error: function(xhr, status, error) {
@@ -95,6 +105,22 @@
                         $('#userForm')[0].reset();
                     });
                 });
+
+                window.onload = function() {
+                    var redirectedFromIndex = sessionStorage.getItem('redirectedFromIndex');
+                    var redirectedFromSignUp = sessionStorage.getItem('redirectedFromSignUp');
+
+                    if (redirectedFromIndex === 'true') {
+                        const toast = new bootstrap.Toast($('#loggedOutToast'))
+                        toast.show()
+                        sessionStorage.setItem('redirectedFromIndex', 'false');
+                    }
+                    if (redirectedFromSignUp === 'true') {
+                        const toast = new bootstrap.Toast($('#signedUpToast'))
+                        toast.show()
+                        sessionStorage.setItem('redirectedFromSignUp', 'false');
+                    }
+                }
             </script>
         </body>
 </html>
