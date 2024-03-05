@@ -12,8 +12,7 @@ CORS(appRecognition)
 @appRecognition.route('/image_recognition', methods=['GET','POST'])
 def image_recognition ():
 
-    
-    alexnet = models.alexnet(weights="AlexNet_Weights.DEFAULT")
+    alexnet = models.alexnet(pretrained=True)    
 
     preprocess = transforms.Compose([
         transforms.Resize(256),
