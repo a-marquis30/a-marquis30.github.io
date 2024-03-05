@@ -84,6 +84,13 @@ function GetRecognizer(location) {
 function GetRecognizer() {
   var fileInput = document.getElementById('customPicture');
   var file = fileInput.files[0];
+
+  if (!file) {
+    var toast = new bootstrap.Toast(document.getElementById('noFileToast'), {});
+    toast.show();
+    return;
+  }
+
   var formData = new FormData();
 
   formData.append('image', file);
@@ -102,7 +109,7 @@ function GetRecognizer() {
     console.log(data); // Print the response data to the console
     var predictedLabel = data.predicted_label;
     predictedLabel = predictedLabel.slice(0, -1);
-      $('#recognitionResults').html(predictedLabel);
+      $('#recognitionResults').html("Machine learning says this is a " + predictedLabel + ".");
 })
 .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
