@@ -60,3 +60,48 @@ function validatePassword() {
     confirmPasswordMessage.textContent = 'Passwords do not match.';
   }
 }
+
+function GetRecognizer(location) {
+  if (location == "" || location == null || location == undefined){
+    alert("Please enter a location");
+    return;
+  }
+  else{
+    fetch(`https://austinmarquis30.pythonanywhere.com/app1/weather_scraper?location=${encodeURIComponent(location)}`)
+    .then(response => {
+      if (!response.ok) {
+        alert("Please enter a valid location");
+        return
+      }
+      return response.text();
+    })
+    .then(data => {
+      $('#weatherResults').html(data);
+    })
+  }
+}
+
+function GetRecognizer() {
+  var fileInput = document.getElementById('customPicture');
+  var file = fileInput.files[0];
+  var formData = new FormData();
+
+  formData.append('image', file);
+
+  fetch(`https://austinmarquis30.pythonanywhere.com/app4/image_recognition`, {
+      method: 'POST',
+      body: formData
+  })
+  .then(response => {
+    if (!response.ok) {
+      alert("Please enter a valid location");
+      return
+    }
+    return response.text();
+  })
+  .then(data => {
+    console.log(data)
+    $('#recognitionResults').html(data);
+  })
+  .catch(error => console.error(error));
+}
