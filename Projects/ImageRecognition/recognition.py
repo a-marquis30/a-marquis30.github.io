@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from requests_html import HTMLSession
 from flask_cors import CORS
 import torch
@@ -31,13 +31,13 @@ def image_recognition ():
     alexnet.eval()
     output = alexnet(input_image.unsqueeze(0))
 
-    with open('imagenet_classes.txt') as f:
+    with open('/home/austinmarquis30/a-marquis30.github.io/Projects/ImageRecognition/imagenet_classes.txt') as f:
         labels = [line.strip() for line in f.readlines()]
 
     _, predicted_idx = torch.max(output, 1)
     predicted_label = labels[predicted_idx.item()]
 
-    return(f'Predicted Label: {predicted_label}.')
+    return jsonify({'predicted_label': predicted_label})
 
 if __name__ == '__main__':
     appRecognition.run(debug=True)

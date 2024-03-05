@@ -94,14 +94,17 @@ function GetRecognizer() {
   })
   .then(response => {
     if (!response.ok) {
-      alert("Please enter a valid location");
-      return
+        throw new Error('Network response was not ok');
     }
-    return response.text();
-  })
-  .then(data => {
-    console.log(data)
-    $('#recognitionResults').html(data);
-  })
-  .catch(error => console.error(error));
+    return response.json();
+})
+.then(data => {
+    console.log(data); // Print the response data to the console
+    var predictedLabel = data.predicted_label;
+    predictedLabel = predictedLabel.slice(0, -1);
+      $('#recognitionResults').html(predictedLabel);
+})
+.catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+});
 }
