@@ -51,8 +51,21 @@
             <main>
                 <div class="container my-2">
                     <div class="row">
-                        <div class="d-flex justify-content-center">
-                            Nothing here yet...
+                        <div id="friendList"class="col-6">
+                            Chats:
+                        </div>
+                        <div class="col-6 row">
+                            <div id="addFriend" class="w-100">
+                                Add a friend:
+                                <form id="addFriendForm">
+                                    <label class="mt-2 w-100" for="username">Username or Email</label>
+                                    <input class="w-75" type="text" id="username" name="username" required>
+                                    <input class="w-20 mt-2" type="submit" value="Add"><br>
+                                </form>
+                            </div>
+                            <div id="friendList"class="w-100 mt-2">
+                                Friends list:
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -82,6 +95,32 @@
             ></script>
             
             <script>
+                $(document).ready(function() {
+                    //todo get friend list
+
+                    $('#addFriendForm').submit(function(e) {
+                        e.preventDefault();
+                        $.ajax({
+                            url: 'https://austinmarquis30.pythonanywhere.com/app5/Add',
+                            type: 'POST',
+                            data: $('#addFriendForm').serialize(),
+                            success: function(response) {
+                                //todo handle success
+                            },
+                            error: function(xhr, status, error) {
+                                // Handle any errors here
+                                var errorMessage = xhr.responseJSON && xhr.responseJSON.error ? xhr.responseJSON.error : 'An error occurred';
+                                alert(errorMessage);
+                                console.log(error);
+                            } 
+                        });
+                        
+                        // Reset form
+                        $('#addFriendForm')[0].reset();
+                    });
+                });
+
+
                 window.onload = function() {
                     var loggedIn = sessionStorage.getItem('loggedIn');
                     var redirectedFromLogin = sessionStorage.getItem('redirectedFromLogin');
