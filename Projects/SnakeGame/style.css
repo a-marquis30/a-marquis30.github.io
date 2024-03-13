@@ -14,28 +14,19 @@
   box-sizing: border-box;
 }
 
-body {
+main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  min-height: 100vh;
+  min-height: 60vh;
   font-family: arial;
-  background: #21262d;
-  background-image: linear-gradient(to top left, #0D1117, #161B22, #21262d);
+  background: var(--medium-pearl);
   position: relative;
   text-align: center;
   overflow: hidden;
 }
 
-/* title */
-header {
-  text-align: center;
-  font-size: 32px;
-  letter-spacing: 10px;
-  padding: 20px 10px;
-  color: white;
-}
 
 /* main table */
 .snakeTable {
